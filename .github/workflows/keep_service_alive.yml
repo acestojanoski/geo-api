@@ -1,10 +1,10 @@
-name: check_status
+name: keep_service_alive
 on:
     schedule:
         - cron: '*/15 * * * *'
 
 jobs:
-    build:
+    check_status:
         runs-on: ubuntu-latest
         steps:
             - name: 'Check status'
