@@ -1,10 +1,17 @@
-;(async function locateMe() {
-  const response = await fetch('/api/locate')
+const onMount = (fn) => document.addEventListener('DOMContentLoaded', fn)
 
-  if (response.ok) {
-    const data = await response.json()
-    document.querySelector('pre').innerHTML = JSON.stringify(data, null, 2)
-  } else {
-    console.info('Request failed with status code', response.status)
+onMount(async () => {
+  const displayElement = document.querySelector('#result')
+
+  try {
+    const response = await fetch('/api/locate')
+    const serializedData = JSON.stringify(await response.json(), null, 2)
+    displayElement.innerHTML = serializedData
+
+    if (!response.ok) {
+      console.info('Request failed with status code', response.status)
+    }
+  } catch (error) {
+    displayElement.innerHTML = error.message
   }
-})()
+})
