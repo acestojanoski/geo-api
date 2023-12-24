@@ -1,0 +1,11 @@
+name: check_status
+on:
+    schedule:
+        - cron: '*/15 * * * *'
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 'Check status'
+              run: curl https://foss-geo-api.onrender.com/api/status
