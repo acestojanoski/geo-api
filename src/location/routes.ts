@@ -12,7 +12,7 @@ routes.get(
       ? req.headers['x-forwarded-for'][0]
       : req.headers['x-forwarded-for']
 
-    const ip = req.params.ip || xForwardedFor || req.socket.remoteAddress
+    const ip = xForwardedFor || req.socket.remoteAddress
 
     if (!ip) {
       res.status(400).json({ message: 'No IP was provided.' })

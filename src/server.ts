@@ -4,6 +4,11 @@ import { routes as locationRoutes } from './location/routes'
 
 const server = express()
 
+server.get('/docs', (req, _, next) => {
+  req.url = '/docs.html'
+  next()
+})
+
 server.use(express.static('public'))
 
 server.use('/api', statusRoutes)
