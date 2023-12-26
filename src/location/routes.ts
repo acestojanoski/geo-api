@@ -1,16 +1,9 @@
 import { Router } from 'express'
 import { service } from './service'
 import { LocateResponse } from './dto'
-import { handler } from './utils'
+import { handler } from '../shared/utils'
 
 export const routes = Router()
-
-routes.get(
-  '/status',
-  handler((_, res) => {
-    res.send('ok')
-  }),
-)
 
 routes.get(
   '/locate/:ip?',
@@ -34,10 +27,11 @@ routes.get(
     }
 
     const result: LocateResponse = {
+      ip,
       country: {
         geonameId: location.country.geoname_id,
         isInEuropeanUnion: location.country.is_in_european_union,
-        isoCode: location.country.iso_code,
+        code: location.country.iso_code,
         name: location.country.names.en,
       },
       continent: {

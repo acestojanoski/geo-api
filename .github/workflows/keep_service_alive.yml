@@ -1,7 +1,7 @@
 name: keep_service_alive
 on:
     schedule:
-        - cron: '*/15 * * * *'
+        - cron: '*/14 * * * *'
 
 jobs:
     check_status:

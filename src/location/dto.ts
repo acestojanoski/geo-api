@@ -1,7 +1,7 @@
 export type CountryDto = {
   geonameId: number
   isInEuropeanUnion?: boolean
-  isoCode: string
+  code: string
   name: string
 }
 
@@ -12,6 +12,7 @@ export type CountinentDto = {
 }
 
 export type LocateResponse = {
+  ip: string
   country: CountryDto
   continent: CountinentDto
 }

@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: FOSS Geo API
+  version: 1.0.0
+
+servers:
+  - url: https://foss-geo-api.onrender.com/api
+
+paths:
+  /status:
+    get:
+      operationId: getStatus
+      summary: Get API status
+      responses:
+        '200':
+          description: Status response
+          content:
+            'text/plain':
+              schema:
+                type: string
+        '500':
+          description: Internal server error
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /locate/{ip}:
+    get:
+      operationId: getLocationByIp
+      summary: Locate an IP address
+      description: If no IP address is provided, the service will try to locate your IP address.
+      parameters:
+        - name: ip
+          in: path
+          description: IP address
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Location response
+          content:
+            'application/json':
+              schema:
+                type: object
+                required: [ip, country, continent]
+                properties:
+                  ip:
+                    type: string
+                  country:
+                    type: object
+                    required: [geonameId, code, name]
+                    properties:
+                      geonameId:
+                        type: number
+                      isInEuropeanUnion:
+                        type: boolean
+                      code:
+                        type: string
+                      name:
+                        type: string
+                  continent:
+                    type: object
+                    required: [geonameId, code, name]
+                    properties:
+                      geonameId:
+                        type: number
+                      code:
+                        type: string
+                      name:
+                        type: string
+        '400':
+          description: 'Bad Request. It can happen when you are not passing an IP address, and your IP address is not found in the request headers.'
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        
+        '404':
+          description: 'Not Found. When the service cannot find a location for the IP address that you are providing.'
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+        '500':
+          description: 'Internal Server Error'
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string

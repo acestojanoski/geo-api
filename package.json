@@ -1,12 +1,13 @@
 {
   "name": "geo-api",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && tsc",
     "dev": "nodemon - exec 'ts-node' src/server.ts",
     "start": "node dist/server.js",
-    "check:status": "sh scripts/check_status.sh"
+    "check:status": "sh scripts/check_status.sh",
+    "generate:docs": "npx @redocly/cli build-docs openapi.yaml -o public/docs.html"
   },
   "keywords": [],
   "author": "",
