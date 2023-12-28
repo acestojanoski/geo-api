@@ -1,15 +1,15 @@
 {
-  "compilerOptions": {
-    "module": "CommonJS",
-    "esModuleInterop": true,
-    "target": "ESNext",
-    "moduleResolution": "Node",
-    "sourceMap": false,
-    "outDir": "dist",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitAny": true
-  },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"module": "CommonJS",
+		"esModuleInterop": true,
+		"target": "ESNext",
+		"moduleResolution": "Node",
+		"sourceMap": false,
+		"outDir": "dist",
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitAny": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
 }

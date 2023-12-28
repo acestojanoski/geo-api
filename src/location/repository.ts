@@ -8,17 +8,17 @@ const DB_PATH = path.resolve(__dirname, '..', '..', 'data', `${DB_NAME}.mmdb`)
 const clientPromise = maxmind.open<CountryResponse>(DB_PATH)
 
 export const repository: IRepository = {
-  async getLocationByIp(ip) {
-    const client = await clientPromise
-    const countryResponse = client.get(ip)
+	async getLocationByIp(ip) {
+		const client = await clientPromise
+		const countryResponse = client.get(ip)
 
-    if (!countryResponse || !countryResponse.country || !countryResponse.continent) {
-      return null
-    }
+		if (!countryResponse || !countryResponse.country || !countryResponse.continent) {
+			return null
+		}
 
-    return {
-      country: countryResponse.country,
-      continent: countryResponse.continent,
-    }
-  },
+		return {
+			country: countryResponse.country,
+			continent: countryResponse.continent,
+		}
+	},
 }

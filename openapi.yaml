@@ -75,7 +75,7 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        
+
         '404':
           description: 'Not Found. When the service cannot find a location for the IP address that you are providing.'
           content:
